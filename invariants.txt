@@ -1,0 +1,50 @@
+Airline:
+1. Each airline must have a unique code.
+    - `airlineCodes.unique() == true`
+2. An airline must have at least one flight.
+    - `flights.size() > 0`
+3. Each flight associated with the airline must have a unique flight number.
+    - `flights.flightNumbers.unique() == true`
+
+Flight:
+1. Each flight must have a unique flight number.
+    - `flightNumbers.unique() == true`
+2. The available seats must be non-negative.
+    - `availableSeats >= 0`
+3. The origin and destination of a flight cannot be the same.
+    - `origin != destination`
+
+Passenger:
+1. Each passenger must have a unique passenger ID.
+    - `passengerIDs.unique() == true`
+2. Each passenger must have a valid passport number.
+    - `passportNumbers.valid() == true`
+3. A passenger cannot book more than one seat per flight.
+    - `bookedFlights.unique() == true`
+
+
+
+Booking:
+1. Each booking must have a unique booking ID.
+    - `bookingIDs.unique() == true`
+2. A booking must be associated with one flight and one passenger.
+    - `flight != null && passenger != null`
+3. The seat number must be unique for each flight.
+    - `seatNumbers.unique() == true`
+
+Aircraft:
+1. The capacity of the aircraft must be greater than or equal to zero.
+    - `capacity >= 0`
+2. The registration number of the aircraft must be unique.
+    - `registrationNumbers.unique() == true`
+3. Maintenance scheduling cannot be null.
+    - `maintenanceScheduled != null`
+
+Crew:
+1. Each crew member must have a unique crew ID.
+    - `crewIDs.unique() == true`
+2. The crew member's name and position cannot be null or empty.
+    - `name != null && !name.isEmpty()`
+    - `position != null && !position.isEmpty()`
+3. A crew member can only be assigned to one flight at a time.
+    - `assignedFlight.unique() == true`

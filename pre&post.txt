@@ -1,0 +1,59 @@
+Airline:
+•	context Airline::addFlight(flight: Flight)
+•	pre: flight <> null
+•	post: flights = flights@pre->including(flight)
+
+•	context Airline::registerPassenger(passenger: Passenger)
+•	pre: passenger <> null
+•	post: passengers = passengers@pre->including(passenger)
+
+Flight:
+•	context Flight::bookSeat(passenger: Passenger)
+•	pre: availableSeats > 0 and not passengers->includes(passenger)
+•	post: passengers = passengers@pre->including(passenger) and availableSeats = availableSeats@pre – 1
+
+•	context Flight::cancelBooking(passenger: Passenger)
+•	pre: passengers->includes(passenger)
+•	post: passengers = passengers@pre->excluding(passenger) and availableSeats = availableSeats@pre + 1        
+
+Passenger:
+•	context Passenger::bookFlight(flight: Flight)
+•	pre: flight.availableSeats > 0 and not flights->includes(flight)
+•	post: flights = flights@pre->including(flight)
+
+•	context Passenger::cancelFlight(flight: Flight)
+•	pre: flights->includes(flight)
+•	post: flights = flights@pre->excluding(flight)
+
+
+
+Booking:
+•	context Booking::confirmBooking(flight: Flight, passenger: Passenger)
+•	pre: flight.availableSeats > 0 and not isConfirmed
+•	post: isConfirmed and flight.availableSeats = flight.availableSeats@pre – 1
+
+•	context Booking::cancelBooking()
+•	pre: isConfirmed
+•	post: not isConfirmed and flight.availableSeats = flight.availableSeats@pre + 1        
+
+Aircraft:
+•	context Aircraft::scheduleMaintenance()
+•	pre: true
+•	post: maintenanceScheduled = true
+
+•	context Aircraft::updateCapacity(newCapacity: Integer)
+•	pre: newCapacity >= 0
+•	post: capacity = newCapacity
+
+Crew:
+•	context Crew::assignToFlight(flight: Flight)
+•	pre: flight <> null
+•	post: assignedFlights = assignedFlights@pre->including(flight)
+
+•	context Crew::updatePosition(newPosition: String)
+•	pre: newPosition <> null and newPosition <> ''
+•	post: position = newPosition
+
+
+
+
