@@ -1,0 +1,36 @@
+!new Airline('airline1')
+!new Flight('flight1')
+!new Passenger('passenger1')
+!new Booking('booking1')
+!new Aircraft('aircraft1')
+!new Crew('crew1')
+
+!airline1.name := 'Cairo Airlines'
+!airline1.code := 'CL'
+
+!flight1.flightNumber := 'CL123'
+!flight1.origin := 'Cairo Egypt'
+!flight1.destination := 'Dubai'
+!flight1.availableSeats := 150
+
+!passenger1.passengerID := 'P001'
+!passenger1.name := 'Ziad'
+!passenger1.passportNumber := 'AB123456'
+
+!booking1.bookingID := 'B001'
+!booking1.date := '2024-06-01'
+!booking1.seatNumber := 'A23'
+
+!aircraft1.capacity := 180
+!aircraft1.registrationNumber := 'N12345'
+
+!crew1.crewID := 'C001'
+!crew1.name := 'Khaled'
+!crew1.position := 'Flight Pilot'
+
+!insert (airline1, flight1) into AirlineFlight
+!insert (airline1, passenger1) into AirlinePassenger
+!insert (flight1, booking1) into FlightBooking
+!insert (passenger1, booking1) into PassengerBooking
+!insert (aircraft1, flight1) into AircraftFlight
+!insert (crew1, flight1) into CrewFlight

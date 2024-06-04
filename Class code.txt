@@ -1,0 +1,90 @@
+model AirlineReservationSystem
+
+class Airline
+attributes
+name : String
+code : String
+operations
+addFlight(flight : Flight)
+registerPassenger(passenger : Passenger)
+end
+
+class Flight
+attributes
+flightNumber : String
+origin : String
+destination : String
+availableSeats : Integer
+operations
+bookSeat(passenger : Passenger)
+cancelBooking(passenger : Passenger)
+end
+
+class Passenger
+attributes
+passengerID : String
+name : String
+passportNumber : String
+operations
+bookFlight(flight : Flight)
+cancelFlight(flight : Flight)
+end
+
+class Booking
+attributes
+bookingID : String
+date : String
+seatNumber : String
+operations
+confirmBooking(flight : Flight, passenger : Passenger)
+cancelBooking()
+end
+
+class Aircraft
+attributes
+capacity : Integer
+registrationNumber : String
+operations
+scheduleMaintenance()
+updateCapacity(newCapacity : Integer)
+end
+
+class Crew
+attributes
+crewID : String
+name : String
+position : String
+operations
+assignToFlight(flight : Flight)
+updatePosition(newPosition : String)
+end
+
+association FlightBooking between
+Flight [1] role flights
+Booking [0..*] role bookings
+end
+
+association PassengerBooking between
+Passenger [1] role passengers
+Booking [0..*] role bookings
+end
+
+association AirlineFlight between
+Airline [1] role airlines
+Flight [0..*] role flights
+end
+
+association AirlinePassenger between
+Airline [1] role airlines
+Passenger [0..*] role passengers
+end
+
+association AircraftFlight between
+Aircraft [1] role aircraft
+Flight [0..*] role flights
+end
+
+association CrewFlight between
+Crew [1] role crew
+Flight [0..*] role flights
+end
